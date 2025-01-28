@@ -76,6 +76,15 @@ public class BaseTest {
 					e.printStackTrace();
 				}
 			}
+			else if(AppConstants.platform.equalsIgnoreCase("remote_git"))
+            {
+                co.addArguments("--headless"); //for GitHub actions
+                co.addArguments("--disable-gpu");
+                co.addArguments("--no-sandbox");
+                co.addArguments("--remote-allow-origins=*");
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver(co);
+            }
 		} else if (browser.equalsIgnoreCase("firefox")) {
 			if (AppConstants.platform.equalsIgnoreCase("local")) {
 				WebDriverManager.firefoxdriver().setup();
@@ -90,6 +99,16 @@ public class BaseTest {
 					e.printStackTrace();
 				}
 			}
+			else if(AppConstants.platform.equalsIgnoreCase("remote_git"))
+            {
+                fo.addArguments("--headless"); //for GitHub actions
+                fo.addArguments("--disable-gpu");
+                fo.addArguments("--no-sandbox");
+              //  fo.addArguments("--remote-allow-origins=*"); not required for GitHub actions execution flow
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver(fo);
+            }
+			
 		}
 		else {
 			//System.out.println("Browser Name Entered is Not Supported");
