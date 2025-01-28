@@ -39,6 +39,7 @@ public class CustomListener implements ITestListener{
     @Override
     public void onTestSkipped(ITestResult result) {
         testLogger.get().log(Status.SKIP, "Test skipped: " + result.getThrowable());
+        //custom
     }
 
     @Override
